@@ -27,7 +27,7 @@
 * 출력 결과 요약: 회사 로비의 대리석 바닥과 지나가는 사람들의 발이 흐릿하게 배경으로 처리되고, 바닥에 떨어진 검은색 USB 메모리에 초점이 맞춰진 스틸컷 생성. 비디오 변환 시 손이 USB를 향해 천천히 다가가다 멈추는 움직임을 자연스럽게 표현함.
 * 생성 결과 파일명: 
     * ChatGPT_Image_ Scene1.png
-    * ChatGPT_Video_ Scene1.mp4
+    * DeeVid_Video_ Scene1.mp4
 
 ### Scene #2
 * 씬 번호 / 씬 길이: Scene 02 / 3초
@@ -43,7 +43,7 @@
 * 출력 결과 요약: 컴퓨터 모니터 속 피싱 이메일의 본문 내용과 의심스러운 하이퍼링크가 선명하게 보이며, 마우스 커서가 해당 링크 위에 정확히 위치해 해당 하이퍼링크를 클릭하는 장면 표현함.
 * 생성 결과 파일명: 
     * ChatGPT_Image_ Scene2.png
-    * ChatGPT_Video_ Scene2.mp4
+    * DeeVid_Video_ Scene2.mp4
 
 ### Scene #3
 * 씬 번호 / 씬 길이: Scene 03 / 3초
@@ -59,7 +59,7 @@
 * 출력 결과 요약: 사무실 책상 위 모니터 베젤에 붙어있는 노란색 포스트잇 메모지에 실제 사용자의 ID와 비밀번호가 육안으로 식별 가능하게 적혀있으며 주변의 분주한 사무실 풍경과 대조적으로 포스트잇에 초점이 명확하게 고정되는 연출을 적용함.
 * 생성 결과 파일명:
     * ChatGPT_Image_ Scene3.png
-    * ChatGPT_Video_ Scene3.mp4
+    * DeeVid_Video_ Scene3.mp4
 
 
 ### Scene #4
