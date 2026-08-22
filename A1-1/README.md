@@ -37,3 +37,10 @@
 * **Version Control**: Git & GitHub
 
 ---
+
+## ⚙️ 실행 방법
+
+1. **저장소 클론하기**
+```bash
+   git clone https://github.com/hyun31337/codyssey.git
+   cd codyssey/A1-1
