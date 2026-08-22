@@ -100,17 +100,68 @@ def add_prompt():
     prompts.append(new_prompt)
     print(f"\n✨ 성공적으로 추가되었습니다! (등록 번호: {new_id})")
 
-# 6. 메인 루프 실행 함수
+# 6. 카테고리별 조회 함수
+def show_by_category():
+    print("\n--- 🏷️ 카테고리별 조회 ---")
+    print("[ 카테고리 목록 ]")
+    for i, cat in enumerate(CATEGORIES, 1):
+        print(f"{i}. {cat}")
+
+    cat_choice = input("조회할 카테고리 번호 또는 이름을 입력하세요: ").strip()
+
+    if cat_choice.isdigit() and 1 <= int(cat_choice) <= len(CATEGORIES):
+        selected_category = CATEGORIES[int(cat_choice) - 1]
+    else:
+        selected_category = cat_choice
+
+    # 해당 카테고리를 가진 프롬프트 필터링
+    filtered = [p for p in prompts if p["category"] == selected_category]
+
+    print(f"\n--- [{selected_category}] 카테고리 검색 결과 ---")
+    if not filtered:
+        print("해당 카테고리에 등록된 프롬프트가 없습니다.")
+        return
+
+    for p in filtered:
+        fav_icon = "⭐" if p["is_favorite"] else "  "
+        print(f"[{p['id']}] {fav_icon} {p['title']}")
+
+# 7. 프롬프트 검색 함수
+def search_prompt():
+    print("\n--- 🔍 프롬프트 검색 ---")
+    keyword = input("검색할 키워드(제목 또는 내용)를 입력하세요: ").strip()
+
+    if not keyword:
+        print("⚠️ 검색어를 입력해주세요.")
+        return
+
+    # 제목이나 내용에 키워드가 포함된 프롬프트 검색
+    results = [p for p in prompts if keyword in p["title"] or keyword in p["content"]]
+
+    print(f"\n--- '{keyword}' 검색 결과 ({len(results)}건) ---")
+    if not results:
+        print("검색 결과가 없습니다.")
+        return
+
+    for p in results:
+        fav_icon = "⭐" if p["is_favorite"] else "  "
+        print(f"[{p['id']}] {fav_icon} [{p['category']}] {p['title']}")
+
+# 8. 메인 루프 실행 함수
 def main():
     while True:
         show_menu()
         choice = input("원하는 기능의 번호를 입력하세요: ").strip()
 
-        if choice == "1":
+        if choice == "1":  # 전체 프롬프트 목록 보기
             show_list()
-        elif choice == "2":  # 💡 추가 기능 연결
+        elif choice == "2":  # 추가 기능 연결
             add_prompt()
-        elif choice == "0":
+        elif choice == "3":  # 카테고리별 조회 연결
+            show_by_category()
+        elif choice == "4":  # 프롬프트 검색 연결
+            search_prompt()
+        elif choice == "0":  # 프로그램 종료
             print("\n프로그램을 종료합니다. 이용해주셔서 감사합니다!")
             break
         else:
