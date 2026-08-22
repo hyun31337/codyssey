@@ -161,8 +161,14 @@ def detail_prompt():
         print("⚠️ 존재하지 않는 번호입니다.")
         return
 
-    print(f"\n제목: {target['title']}")
-    print(f"내용: {target['content']}")
+    fav_str = "⭐ 등록됨" if target['is_favorite'] else "없음"
+    print("\n" + "=" * 40)
+    print(f"📌 제목: {target['title']}")
+    print(f"🏷️ 카테고리: {target['category']}")
+    print(f"⭐ 즐겨찾기: {fav_str}")
+    print("-" * 40)
+    print(f"[ 내용 ]\n{target['content']}")
+    print("=" * 40)
 
 # 9. 메인 루프 실행 함수
 def main():
