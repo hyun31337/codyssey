@@ -170,7 +170,27 @@ def detail_prompt():
     print(f"[ 내용 ]\n{target['content']}")
     print("=" * 40)
 
-# 9. 메인 루프 실행 함수
+# 9. 즐겨찾기 추가/해제 함수
+def toggle_favorite():
+    print("\n--- ⭐ 즐겨찾기 관리 ---")
+    try:
+        p_id = int(input("즐겨찾기를 변경할 프롬프트 번호를 입력하세요: ").strip())
+    except ValueError:
+        print("⚠️ 숫자를 입력해주세요.")
+        return
+
+    target = next((p for p in prompts if p["id"] == p_id), None)
+    if not target:
+        print("⚠️ 존재하지 않는 번호입니다.")
+        return
+
+    # 상태 반전 (True -> False, False -> True)
+    target["is_favorite"] = not target["is_favorite"]
+
+    status_str = "등록되었습니다." if target["is_favorite"] else "해제되었습니다."
+    print(f"✨ [{target['title']}] 프롬프트가 즐겨찾기에 {status_str}")
+
+# 10. 메인 루프 실행 함수
 def main():
     while True:
         show_menu()
@@ -186,6 +206,8 @@ def main():
             search_prompt()
         elif choice == "5":  # 상세 보기 연결
             detail_prompt()
+        elif choice == "6":  # 즐겨찾기 추가/해제 연결
+            toggle_favorite()
         elif choice == "0":  # 프로그램 종료
             print("\n프로그램을 종료합니다. 이용해주셔서 감사합니다!")
             break
