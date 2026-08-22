@@ -170,27 +170,54 @@ def detail_prompt():
     print(f"[ 내용 ]\n{target['content']}")
     print("=" * 40)
 
-# 9. 즐겨찾기 추가/해제 함수
+# 9. 즐겨찾기 추가/해제 함수 (목록 출력 + 토글 기능 통합)
 def toggle_favorite():
-    print("\n--- ⭐ 즐겨찾기 관리 ---")
-    try:
-        p_id = int(input("즐겨찾기를 변경할 프롬프트 번호를 입력하세요: ").strip())
-    except ValueError:
-        print("⚠️ 숫자를 입력해주세요.")
+    while True:
+        print("\n--- ⭐ 즐겨찾기 관리 및 목록 ---")
+        
+        # 1. 현재 즐겨찾기된 항목들과 전체 항목의 상태를 한눈에 보여주기
+        print("현재 등록된 프롬프트 목록:")
+        for p in prompts:
+            fav_icon = "⭐" if p["is_favorite"] else "  "
+            print(f"[{p['id']}] {fav_icon} [{p['category']}] {p['title']}")
+        
+        print("-" * 40)
+        print("0. 이전 메뉴로 돌아가기")
+        
+        choice_input = input("즐겨찾기를 추가/해제할 프롬프트 번호를 입력하세요 (0: 돌아가기): ").strip()
+        
+        if choice_input == "0":
+            break
+            
+        if not choice_input.isdigit():
+            print("⚠️ 올바른 숫자를 입력해주세요.")
+            continue
+            
+        p_id = int(choice_input)
+        target = next((p for p in prompts if p["id"] == p_id), None)
+        
+        if not target:
+            print("⚠️ 존재하지 않는 번호입니다. 다시 확인해주세요.")
+            continue
+
+        # 상태 반전 (True <-> False)
+        target["is_favorite"] = not target["is_favorite"]
+        status_str = "⭐ 즐겨찾기에 등록되었습니다!" if target["is_favorite"] else "❌ 즐겨찾기가 해제되었습니다."
+        print(f"\n✨ [{target['title']}] {status_str}")
+
+# 10. 즐겨찾기 목록 모아보기 함수
+def show_favorites():
+    print("\n--- ⭐ 즐겨찾기 모아보기 ---")
+    favorites = [p for p in prompts if p["is_favorite"]]
+
+    if not favorites:
+        print("즐겨찾기된 프롬프트가 없습니다.")
         return
 
-    target = next((p for p in prompts if p["id"] == p_id), None)
-    if not target:
-        print("⚠️ 존재하지 않는 번호입니다.")
-        return
+    for p in favorites:
+        print(f"[{p['id']}] [{p['category']}] {p['title']}")
 
-    # 상태 반전 (True -> False, False -> True)
-    target["is_favorite"] = not target["is_favorite"]
-
-    status_str = "등록되었습니다." if target["is_favorite"] else "해제되었습니다."
-    print(f"✨ [{target['title']}] 프롬프트가 즐겨찾기에 {status_str}")
-
-# 10. 메인 루프 실행 함수
+# 11. 메인 루프 실행 함수
 def main():
     while True:
         show_menu()
