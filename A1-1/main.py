@@ -54,7 +54,53 @@ def show_list():
         fav_icon = "⭐" if p["is_favorite"] else "  "
         print(f"[{p['id']}] {fav_icon} [{p['category']}] {p['title']}")
 
-# 5. 메인 루프 실행 함수
+# 5. 새로 추가할 프롬프트 추가 함수
+def add_prompt():
+    print("\n--- ➕ 새 프롬프트 추가 ---")
+    
+    # 1. 제목 입력 (비어있으면 다시 요청)
+    title = input("제목을 입력하세요: ").strip()
+    while not title:
+        print("⚠️ 제목은 비워둘 수 없습니다.")
+        title = input("제목을 입력하세요: ").strip()
+
+    # 2. 내용 입력 (비어있으면 다시 요청)
+    content = input("내용을 입력하세요: ").strip()
+    while not content:
+        print("⚠️ 내용은 비워둘 수 없습니다.")
+        content = input("내용을 입력하세요: ").strip()
+
+    # 3. 카테고리 선택
+    print("\n[ 카테고리 목록 ]")
+    for i, cat in enumerate(CATEGORIES, 1):
+        print(f"{i}. {cat}")
+    
+    cat_choice = input("카테고리 번호 또는 직접 이름을 입력하세요: ").strip()
+    
+    # 숫자로 입력한 경우 카테고리 목록에서 가져오기
+    if cat_choice.isdigit() and 1 <= int(cat_choice) <= len(CATEGORIES):
+        category = CATEGORIES[int(cat_choice) - 1]
+    elif cat_choice in CATEGORIES:
+        category = cat_choice
+    else:
+        # 목록에 없는 경우 '기타'로 처리하거나 직접 입력한 값 사용
+        category = cat_choice if cat_choice else "기타"
+
+    # 4. 새로운 프롬프트 딕셔너리 생성 (id는 기존 리스트 길이 + 1)
+    new_id = len(prompts) + 1
+    new_prompt = {
+        "id": new_id,
+        "title": title,
+        "content": content,
+        "category": category,
+        "is_favorite": False  # 즐겨찾기 기본값 False
+    }
+
+    # 5. 리스트에 추가
+    prompts.append(new_prompt)
+    print(f"\n✨ 성공적으로 추가되었습니다! (등록 번호: {new_id})")
+
+# 6. 메인 루프 실행 함수
 def main():
     while True:
         show_menu()
@@ -62,6 +108,8 @@ def main():
 
         if choice == "1":
             show_list()
+        elif choice == "2":  # 💡 추가 기능 연결
+            add_prompt()
         elif choice == "0":
             print("\n프로그램을 종료합니다. 이용해주셔서 감사합니다!")
             break
