@@ -147,7 +147,24 @@ def search_prompt():
         fav_icon = "⭐" if p["is_favorite"] else "  "
         print(f"[{p['id']}] {fav_icon} [{p['category']}] {p['title']}")
 
-# 8. 메인 루프 실행 함수
+# 8. 상세 보기 기본 함수 추가
+def detail_prompt():
+    print("\n--- 🔍 프롬프트 상세 보기 ---")
+    try:
+        p_id = int(input("상세 볼 프롬프트 번호를 입력하세요: ").strip())
+    except ValueError:
+        print("⚠️ 숫자를 입력해주세요.")
+        return
+
+    target = next((p for p in prompts if p["id"] == p_id), None)
+    if not target:
+        print("⚠️ 존재하지 않는 번호입니다.")
+        return
+
+    print(f"\n제목: {target['title']}")
+    print(f"내용: {target['content']}")
+
+# 9. 메인 루프 실행 함수
 def main():
     while True:
         show_menu()
@@ -161,6 +178,8 @@ def main():
             show_by_category()
         elif choice == "4":  # 프롬프트 검색 연결
             search_prompt()
+        elif choice == "5":  # 상세 보기 연결
+            detail_prompt()
         elif choice == "0":  # 프로그램 종료
             print("\n프로그램을 종료합니다. 이용해주셔서 감사합니다!")
             break
