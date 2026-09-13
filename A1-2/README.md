@@ -48,9 +48,9 @@ API 키가 코드에 직접 노출되지 않도록 **반드시** 프로젝트 �
 
 1. 프로젝트 루트 폴더에 `.env` 파일을 만듭니다.
 2. 아래와 같이 OpenAI 및 네이버 Open API 키를 입력합니다.
- - OPENAI_API_KEY="Open API Key"
- - NAVER_CLIENT_ID="발급받은_네이버_Client_ID"
- - NAVER_CLIENT_SECRET="발급받은_네이버_Client_Secret"
+   - 1OPENAI_API_KEY="Open API Key"
+   - 1NAVER_CLIENT_ID="발급받은_네이버_Client_ID"
+   - 1NAVER_CLIENT_SECRET="발급받은_네이버_Client_Secret"
  
 > **⚠️ 보안 주의 사항**
 > - API 키를 코드나 Git 저장소(README, 소스코드 등)에 직접 하드코딩하지 마세요.
