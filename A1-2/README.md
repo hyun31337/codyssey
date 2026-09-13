@@ -14,6 +14,7 @@
 ---
 
 ## 2. 프로젝트 구조
+```
 travel-planner/
 │
 ├── travel_planner.py      # 메인 실행 프로그램 코드
@@ -21,7 +22,7 @@ travel-planner/
 └── results/               # 실행 결과 파일 저장 폴더
     ├── YYYY-MM-DD_travel_data.json  # 원본 데이터 및 에러 요약
     └── YYYY-MM-DD_travel_plan.md    # 최종 여행 추천 리포트
-
+```
 ---
 
 ## 3. 설치 및 환경 설정 (Installation & Setup)
