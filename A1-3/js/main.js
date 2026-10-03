@@ -12,7 +12,7 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
     resultArea.innerText = 'AI가 실시간 축제 정보를 분석 중입니다... 잠시만 기다려주세요!';
 
     try {
-        const response = await fetch('/api', {
+        const response = await fetch('/api/recommend', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
