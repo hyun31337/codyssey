@@ -18,7 +18,7 @@ async function getFestivalRecommendations() {
 
     try {
         // 백엔드(Vercel Serverless Function)로 요청 전송
-        const response = await fetch('/api/recommend', {
+        const response = await fetch('/api/index', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
