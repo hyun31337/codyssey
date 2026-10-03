@@ -201,3 +201,18 @@ button:active {
     font-size: 0.95rem;
     color: var(--text-muted);
 }
+
+/* 8. 푸터 (카피라이터 영역) 가운데 정렬 */
+footer {
+    text-align: center;         /* 텍스트 가운데 정렬 */
+    padding: 24px 1rem;         /* 위아래 여백 설정 */
+    color: var(--text-muted);   /* 연한 텍스트 컬러 적용 */
+    font-size: 0.9rem;          /* 본문보다 살짝 작은 폰트 크기 */
+    border-top: 1px solid var(--border-color); /* (선택) 상단 구분선 */
+    background-color: var(--white);            /* (선택) 배경색 지정 */
+}
+
+/* 푸터 내부 p 태그 기본 마진 제거 */
+footer p {
+    margin: 0;
+}
