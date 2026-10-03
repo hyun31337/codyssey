@@ -1,198 +1,69 @@
-* {
-    box-sizing: border-box;
+body {
+    font-family: 'Apple SD Gothic Neo', sans-serif;
     margin: 0;
     padding: 0;
-    font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
-}
-
-body {
-    line-height: 1.6;
+    background-color: #f9f9f9;
     color: #333;
-    background-color: #f9fafb;
+    line-height: 1.6;
 }
-
-/* 네비게이션 */
 header {
+    background: #fff;
+    padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 5%;
-    background: #ffffff;
+    border-bottom: 1px solid #ddd;
+}
+header nav a {
+    margin-left: 15px;
+    text-decoration: none;
+    color: #555;
+}
+main {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    position: sticky;
-    top: 0;
-    z-index: 100;
 }
-
-.logo {
-    font-weight: bold;
-    font-size: 1.25rem;
-    color: #ff6b6b;
-}
-
-nav a {
-    margin-left: 1.5rem;
-    text-decoration: none;
-    color: #4b5563;
-    font-weight: 500;
-}
-
-nav a:hover {
-    color: #ff6b6b;
-}
-
-/* 히어로 섹션 */
-.hero-section {
-    background: linear-gradient(135deg, #ff6b6b, #ff8e53);
-    color: white;
-    text-align: center;
-    padding: 5rem 1rem;
-}
-
-.hero-section h1 {
-    font-size: 2.2rem;
-    margin-bottom: 1rem;
-}
-
-.hero-section p {
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
-    opacity: 0.9;
-}
-
-.cta-btn {
-    background: white;
-    color: #ff6b6b;
-    padding: 0.75rem 1.5rem;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: bold;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-/* 추천 섹션 */
-.recommend-section {
-    max-width: 700px;
-    margin: 3rem auto;
-    padding: 2rem;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-}
-
-.recommend-section h2 {
-    text-align: center;
-    margin-bottom: 0.5rem;
-    color: #1f2937;
-}
-
-.section-desc {
-    text-align: center;
-    color: #6b7280;
-    margin-bottom: 2rem;
-}
-
 .input-group {
-    margin-bottom: 1.25rem;
+    margin-bottom: 15px;
 }
-
 .input-group label {
     display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-    font-size: 0.9rem;
-    color: #374151;
+    margin-bottom: 5px;
+    font-weight: bold;
 }
-
 .input-group input, .input-group select {
     width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    font-size: 1rem;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
-
-#submit-btn {
-    width: 100%;
-    padding: 0.75rem;
-    background: #ff6b6b;
-    color: white;
+button {
+    background: #4f46e5;
+    color: #fff;
     border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    font-weight: bold;
+    padding: 12px 20px;
+    width: 100%;
+    font-size: 16px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: background 0.2s;
 }
-
-#submit-btn:hover {
-    background: #fa5252;
+button:hover {
+    background: #4338ca;
 }
-
-/* 결과 영역 */
-.result-container {
-    margin-top: 2rem;
-    padding: 1.5rem;
+.result-section {
+    margin-top: 30px;
+    padding: 15px;
     background: #f3f4f6;
-    border-radius: 8px;
-    border-left: 4px solid #ff6b6b;
+    border-radius: 4px;
+    white-space: pre-line;
 }
-
-.result-container h3 {
-    margin-bottom: 1rem;
-    color: #1f2937;
-}
-
-.hidden {
-    display: none;
-}
-
-/* FAQ 섹션 */
-.faq-section {
-    max-width: 700px;
-    margin: 3rem auto;
-    padding: 0 1rem;
-}
-
-.faq-section h2 {
-    margin-bottom: 1.5rem;
-    text-align: center;
-}
-
-.faq-item {
-    background: white;
-    padding: 1.25rem;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-}
-
-.faq-item h4 {
-    margin-bottom: 0.5rem;
-    color: #1f2937;
-}
-
-.faq-item p {
-    color: #6b7280;
-    font-size: 0.95rem;
-}
-
-/* 푸터 */
 footer {
     text-align: center;
-    padding: 2rem;
-    background: #1f2937;
-    color: #9ca3af;
-    font-size: 0.9rem;
-}
-
-/* 반응형 미디어 쿼리 (모바일 대응) */
-@media (max-width: 600px) {
-    .hero-section h1 {
-        font-size: 1.75rem;
-    }
-    .recommend-section {
-        margin: 1rem;
-        padding: 1.25rem;
-    }
+    padding: 20px;
+    color: #777;
 }

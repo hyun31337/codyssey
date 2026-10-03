@@ -6,33 +6,14 @@ import urllib.parse
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
-            try:
-                # api/ 폴더의 상위 디렉토리에 있는 index.html 파일 경로 찾기
-                current_dir = os.path.dirname(os.path.abspath(__file__))
-                index_path = os.path.join(current_dir, '..', 'index.html')
-
-                if os.path.exists(index_path):
-                    with open(index_path, 'r', encoding='utf-8') as f:
-                        html_content = f.read()
-                    
-                    self.send_response(200)
-                    self.send_header('Content-Type', 'text/html; charset=utf-8')
-                    self.end_headers()
-                    self.wfile.write(html_content.encode('utf-8'))
-                else:
-                    self.send_response(404)
-                    self.send_header('Content-Type', 'text/plain; charset=utf-8')
-                    self.end_headers()
-                    self.wfile.write("index.html 파일을 찾을 수 없습니다.".encode('utf-8'))
-            except Exception as e:
-                self.send_response(500)
-                self.send_header('Content-Type', 'text/plain; charset=utf-8')
-                self.end_headers()
-                self.wfile.write(f"서버 오류 발생: {str(e)}".encode('utf-8'))
+        self.send_response(200)
+        self.send_header('Content-Type', 'text/plain; charset=utf-8')
+        self.end_headers()
+        message = "FestaPick API Server is running normally. Use POST method for recommendations."
+        self.wfile.write(message.encode('utf-8'))
 
     def do_POST(self):
         try:
-            # 1. 프론트엔드에서 보낸 요청 데이터 읽기
             content_length = int(self.headers.get('Content-Length', 0))
             body = self.rfile.read(content_length)
             data = json.loads(body.decode('utf-8'))
@@ -41,7 +22,6 @@ class handler(BaseHTTPRequestHandler):
             location = data.get('location', '전국')
             interest = data.get('interest', '일반 여행')
 
-            # 2. 환경 변수에서 API 키 및 설정 가져오기
             openai_api_key = os.environ.get("OPENAI_API_KEY")
             openai_base_url = os.environ.get("OPENAI_BASE_URL", "https://copa.codyssey.kr/v1")
             naver_client_id = os.environ.get("NAVER_CLIENT_ID")
@@ -51,7 +31,7 @@ class handler(BaseHTTPRequestHandler):
                 self.send_error_response(500, "서버 설정 오류: OpenAI API 키가 설정되지 않았습니다.")
                 return
 
-            # 3. 네이버 검색 API를 활용해 실시간 축제/행사 관련 블로그 정보 수집
+            # 네이버 검색 API 연동
             search_query = f"{date} {location} {interest} 축제"
             enc_text = urllib.parse.quote(search_query)
             naver_url = f"https://openapi.naver.com/v1/search/blog.json?query={enc_text}&display=3"
@@ -67,7 +47,6 @@ class handler(BaseHTTPRequestHandler):
                         if naver_res.getcode() == 200:
                             naver_data = json.loads(naver_res.read().decode('utf-8'))
                             items = naver_data.get('items', [])
-                            # 검색 결과에서 HTML 태그 제거 및 텍스트 조합
                             summaries = []
                             for item in items:
                                 clean_title = item['title'].replace('<b>', '').replace('</b>', '')
@@ -78,7 +57,7 @@ class handler(BaseHTTPRequestHandler):
                 except Exception as ne:
                     print(f"Naver Search API Error: {ne}")
 
-            # 4. OpenAI API 프롬프트 구성 (네이버 검색 결과 참고 자료 포함)
+            # OpenAI 프롬프트 구성
             prompt = (
                 f"사용자가 선택한 날짜({date}), 지역({location}), 관심사({interest})를 바탕으로 "
                 f"해당 주간에 열리는 대한민국 지역 축제 2가지를 추천해줘.\n\n"
@@ -86,7 +65,6 @@ class handler(BaseHTTPRequestHandler):
                 "위 정보를 참고하여 각 축제의 이름, 추천 이유, 대략적인 일정을 친절하고 깔끔한 텍스트 형태로 작성해줘."
             )
 
-            # 5. 커스텀 엔드포인트를 통한 OpenAI API 호출
             req_url = f"{openai_base_url.rstrip('/')}/chat/completions"
             headers = {
                 "Content-Type": "application/json",
@@ -109,7 +87,6 @@ class handler(BaseHTTPRequestHandler):
                 res_data = json.loads(response.read().decode('utf-8'))
                 ai_message = res_data['choices'][0]['message']['content']
 
-            # 6. 최종 성공 응답 반환
             self.send_response(200)
             self.send_header('Content-type', 'application/json; charset=utf-8')
             self.end_headers()
