@@ -5,6 +5,14 @@ import urllib.request
 import urllib.parse
 
 class handler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        # 브라우저 주소창으로 직접 접속했을 때 (GET 요청) 501 에러 방지 및 안내 메시지 반환
+        self.send_response(200)
+        self.send_header('Content-Type', 'text/plain; charset=utf-8')
+        self.end_headers()
+        message = "FestaPick API Server is running normally. Use POST method for recommendations."
+        self.wfile.write(message.encode('utf-8'))
+
     def do_POST(self):
         try:
             # 1. 프론트엔드에서 보낸 요청 데이터 읽기
@@ -68,7 +76,7 @@ class handler(BaseHTTPRequestHandler):
                 "Authorization": f"Bearer {openai_api_key}"
             }
             payload = {
-                "model": "gpt-5-mini",  # 지정된 모델 적용[cite: 1, 2]
+                "model": "gpt-5-mini",
                 "messages": [{"role": "user", "content": prompt}],
                 "temperature": 0.7
             }
