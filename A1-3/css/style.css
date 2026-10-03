@@ -1,69 +1,132 @@
+/* 1. 기본 스타일 및 변수 설정 */
+:root {
+    --primary-color: #4f46e5;       /* 메인 브랜드 컬러 (인디고) */
+    --primary-hover: #4338ca;
+    --bg-color: #f8fafc;            /* 아주 연한 회색 배경 */
+    --text-main: #1e293b;           /* 진한 텍스트 */
+    --text-muted: #64748b;         /* 흐린 텍스트 */
+    --border-color: #e2e8f0;        /* 경계선 색상 */
+    --white: #ffffff;
+}
+
 body {
-    font-family: 'Apple SD Gothic Neo', sans-serif;
+    font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
-    color: #333;
+    background-color: var(--bg-color);
+    color: var(--text-main);
     line-height: 1.6;
 }
+
+/* 2. 헤더: 상단 고정 및 그림자 효과 */
 header {
-    background: #fff;
-    padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px); /* 뒤가 살짝 비치는 효과 */
+    padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
+
 header nav a {
-    margin-left: 15px;
+    margin-left: 20px;
     text-decoration: none;
-    color: #555;
+    color: var(--text-muted);
+    font-weight: 500;
+    transition: color 0.2s;
 }
+
+header nav a:hover {
+    color: var(--primary-color);
+}
+
+/* 3. 메인 컨텐츠 영역 */
 main {
-    max-width: 800px;
-    margin: 30px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    max-width: 640px; /* 너무 넓지 않게 조절하여 가독성 향상 */
+    margin: 50px auto;
+    padding: 40px;
+    background: var(--white);
+    border-radius: 16px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 
+                0 8px 10px -6px rgba(0, 0, 0, 0.05);
 }
+
+/* 4. 입력 그룹 스타일링 */
 .input-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
+
 .input-group label {
     display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-main);
 }
-.input-group input, .input-group select {
+
+.input-group input, 
+.input-group select {
     width: 100%;
-    padding: 10px;
+    padding: 12px 16px;
     box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.2s ease;
+    outline: none;
 }
+
+/* 입력창 클릭 시 강조 효과 */
+.input-group input:focus, 
+.input-group select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+}
+
+/* 5. 버튼 스타일링 */
 button {
-    background: #4f46e5;
+    background: var(--primary-color);
     color: #fff;
     border: none;
-    padding: 12px 20px;
+    padding: 14px 20px;
     width: 100%;
     font-size: 16px;
-    border-radius: 4px;
+    font-weight: 600;
+    border-radius: 8px;
     cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 10px;
 }
+
 button:hover {
-    background: #4338ca;
+    background: var(--primary-hover);
+    transform: translateY(-1px); /* 살짝 떠오르는 효과 */
 }
+
+button:active {
+    transform: translateY(0px);
+}
+
+/* 6. 결과 섹션 */
 .result-section {
-    margin-top: 30px;
-    padding: 15px;
-    background: #f3f4f6;
-    border-radius: 4px;
+    margin-top: 32px;
+    padding: 24px;
+    background: #f1f5f9;
+    border-radius: 12px;
+    border: 1px dashed var(--border-color);
     white-space: pre-line;
+    font-size: 15px;
+    color: #334155;
 }
+
+/* 7. 푸터 */
 footer {
     text-align: center;
-    padding: 20px;
-    color: #777;
+    padding: 40px 20px;
+    color: var(--text-muted);
+    font-size: 14px;
 }
