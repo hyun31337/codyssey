@@ -60,7 +60,7 @@ class handler(BaseHTTPRequestHandler):
             # OpenAI 프롬프트 구성
             prompt = (
                 f"사용자가 선택한 날짜({date}), 지역({location}), 관심사({interest})를 바탕으로 "
-                f"해당 주간에 열리는 대한민국 지역 축제 2가지를 추천해줘.\n\n"
+                f"해당 주간에 열리는 대한민국 지역 축제 3가지를 추천해줘.\n\n"
                 f"[참고할 만한 실시간 웹/블로그 검색 데이터]\n{naver_results_text}\n\n"
                 "위 정보를 참고하여 각 축제의 이름, 추천 이유, 대략적인 일정을 친절하고 깔끔한 텍스트 형태로 작성해줘."
             )
