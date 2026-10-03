@@ -6,11 +6,29 @@ import urllib.parse
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
-        self.send_response(200)
-        self.send_header('Content-Type', 'text/plain; charset=utf-8')
-        self.end_headers()
-        message = "FestaPick API Server is running normally. Use POST method for recommendations."
-        self.wfile.write(message.encode('utf-8'))
+            try:
+                # api/ 폴더의 상위 디렉토리에 있는 index.html 파일 경로 찾기
+                current_dir = os.path.dirname(os.path.abspath(__file__))
+                index_path = os.path.join(current_dir, '..', 'index.html')
+
+                if os.path.exists(index_path):
+                    with open(index_path, 'r', encoding='utf-8') as f:
+                        html_content = f.read()
+                    
+                    self.send_response(200)
+                    self.send_header('Content-Type', 'text/html; charset=utf-8')
+                    self.end_headers()
+                    self.wfile.write(html_content.encode('utf-8'))
+                else:
+                    self.send_response(404)
+                    self.send_header('Content-Type', 'text/plain; charset=utf-8')
+                    self.end_headers()
+                    self.wfile.write("index.html 파일을 찾을 수 없습니다.".encode('utf-8'))
+            except Exception as e:
+                self.send_response(500)
+                self.send_header('Content-Type', 'text/plain; charset=utf-8')
+                self.end_headers()
+                self.wfile.write(f"서버 오류 발생: {str(e)}".encode('utf-8'))
 
     def do_POST(self):
         try:
