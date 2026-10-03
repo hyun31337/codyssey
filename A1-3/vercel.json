@@ -3,5 +3,9 @@
     "api/recommend.py": {
       "maxDuration": 30
     }
-  }
+  },
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/api/recommend.py" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ]
 }
