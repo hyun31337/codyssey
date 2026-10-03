@@ -4,3 +4,4 @@
 # 파이썬 가상환경 폴더
 venv/
 __pycache__/
+.DS_Store
