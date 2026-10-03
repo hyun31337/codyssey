@@ -20,13 +20,14 @@ body {
     background-color: var(--bg-color);
     color: var(--text-main);
     line-height: 1.6;
+    overflow-x: hidden; /* 모바일 가로 스크롤 방지 */
 }
 
-/* 2. 헤더: 중앙 정렬 너비 제한 및 상단 고정 */
+/* 2. 헤더: 반응형 고정 헤더 */
 header {
     background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(10px); /* 뒤가 살짝 비치는 효과 */
-    padding: 1rem 2rem;
+    backdrop-filter: blur(10px);
+    padding: 1rem 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -36,18 +37,24 @@ header {
     z-index: 100;
 }
 
-/* 헤더 내부 아이템 정렬 및 최대 너비 설정 */
 header h1 {
     margin: 0;
     font-size: 1.25rem;
+    white-space: nowrap;
+}
+
+header nav {
+    display: flex;
+    gap: 16px;
 }
 
 header nav a {
-    margin-left: 20px;
     text-decoration: none;
     color: var(--text-muted);
     font-weight: 500;
+    font-size: 0.95rem;
     transition: color 0.2s;
+    white-space: nowrap;
 }
 
 header nav a:hover {
@@ -56,9 +63,10 @@ header nav a:hover {
 
 /* 3. 메인 컨텐츠 영역 */
 main {
-    max-width: 640px; /* 카드 폭 조절 */
-    margin: 40px auto;
-    padding: 40px;
+    width: calc(100% - 32px); /* 모바일 좌우 여백 확보 */
+    max-width: 640px;
+    margin: 24px auto;
+    padding: 24px 20px;
     background: var(--white);
     border-radius: 16px;
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 
@@ -68,17 +76,20 @@ main {
 /* 소개 글 영역 */
 .intro {
     text-align: center;
-    margin-bottom: 32px;
+    margin-bottom: 28px;
 }
 
 .intro h2 {
     margin-top: 0;
-    font-size: 1.5rem;
+    font-size: 1.35rem;
+    word-break: keep-all; /* 한글 단어 단위 줄바꿈 */
 }
 
 .intro p {
     color: var(--text-muted);
     margin-bottom: 0;
+    font-size: 0.95rem;
+    word-break: keep-all;
 }
 
 /* 4. 입력 그룹 스타일링 */
@@ -89,13 +100,14 @@ main {
 
 .form-section > p {
     color: var(--text-muted);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     margin-top: 0;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
+    word-break: keep-all;
 }
 
 .input-group {
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
 .input-group label {
@@ -109,7 +121,7 @@ main {
 .input-group input, 
 .input-group select {
     width: 100%;
-    padding: 12px 16px;
+    padding: 12px 14px;
     border: 1px solid var(--border-color);
     border-radius: 8px;
     font-size: 15px;
@@ -118,7 +130,6 @@ main {
     background-color: var(--white);
 }
 
-/* 입력창 클릭 시 강조 효과 */
 .input-group input:focus, 
 .input-group select:focus {
     border-color: var(--primary-color);
@@ -151,68 +162,118 @@ button:active {
 
 /* 6. 결과 섹션 */
 .result-section {
-    margin-top: 32px;
-    padding: 24px;
+    margin-top: 28px;
+    padding: 20px;
     background: #f1f5f9;
     border-radius: 12px;
     border: 1px dashed var(--border-color);
     white-space: pre-line;
-    font-size: 15px;
+    font-size: 14.5px;
     color: #334155;
+    word-break: break-word;
 }
 
 .result-section h2 {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     margin-top: 0;
 }
 
-/* 7. FAQ 섹션 (상단 카드와 가로 폭 맞춤) */
+/* 7. FAQ 섹션 */
 .faq-section {
-    max-width: 640px;       /* 메인 카드(main)와 동일한 최대 너비 */
-    margin: 40px auto 60px;
-    padding: 0;             /* 좌우 패딩을 0으로 설정하여 상단 박스와 가로 끝선을 완벽히 일치 */
-    width: 100%;            /* 반응형에서도 동일한 비율 유지 */
+    width: calc(100% - 32px);
+    max-width: 640px;
+    margin: 32px auto 48px;
+    padding: 0;
 }
 
 .faq-section h2 {
     text-align: center;
-    font-size: 1.4rem;
-    margin-bottom: 24px;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
 }
 
 .faq-item {
     background: var(--white);
-    padding: 24px;           /* 카드 내부 여백 정돈 */
-    border-radius: 16px;     /* 메인 카드와 동일한 곡률 적용 */
-    margin-bottom: 16px;
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 12px;
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 
-                0 8px 10px -6px rgba(0, 0, 0, 0.05); /* 메인 카드와 동일한 그림자 효과 */
+                0 8px 10px -6px rgba(0, 0, 0, 0.05);
     border: 1px solid var(--border-color);
 }
 
 .faq-item h3 {
     margin: 0 0 8px 0;
-    font-size: 1rem;
+    font-size: 0.98rem;
     color: var(--primary-color);
+    word-break: keep-all;
 }
 
 .faq-item p {
     margin: 0;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: var(--text-muted);
+    word-break: keep-all;
 }
 
-/* 8. 푸터 (카피라이터 영역) 가운데 정렬 */
+/* 8. 푸터 영역 */
 footer {
-    text-align: center;         /* 텍스트 가운데 정렬 */
-    padding: 24px 1rem;         /* 위아래 여백 설정 */
-    color: var(--text-muted);   /* 연한 텍스트 컬러 적용 */
-    font-size: 0.9rem;          /* 본문보다 살짝 작은 폰트 크기 */
-    border-top: 1px solid var(--border-color); /* (선택) 상단 구분선 */
-    background-color: var(--white);            /* (선택) 배경색 지정 */
+    text-align: center;
+    padding: 24px 1rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--white);
 }
 
-/* 푸터 내부 p 태그 기본 마진 제거 */
 footer p {
     margin: 0;
+}
+
+/* 9. 반응형 미디어 쿼리 (태블릿 / 데스크톱 이상) */
+@media (min-width: 640px) {
+    header {
+        padding: 1.25rem 3rem;
+    }
+
+    header h1 {
+        font-size: 1.4rem;
+    }
+
+    header nav {
+        gap: 24px;
+    }
+
+    header nav a {
+        font-size: 1rem;
+    }
+
+    main {
+        margin: 40px auto;
+        padding: 40px;
+    }
+
+    .intro h2 {
+        font-size: 1.5rem;
+    }
+
+    .intro p {
+        font-size: 1rem;
+    }
+
+    .faq-section {
+        margin: 40px auto 60px;
+    }
+
+    .faq-item {
+        padding: 24px;
+    }
+
+    .faq-item h3 {
+        font-size: 1rem;
+    }
+
+    .faq-item p {
+        font-size: 0.95rem;
+    }
 }
