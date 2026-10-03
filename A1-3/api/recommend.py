@@ -71,7 +71,7 @@ class handler(BaseHTTPRequestHandler):
                 "Authorization": f"Bearer {openai_api_key}"
             }
             payload = {
-                "model": "gpt-5-mini",
+                "model": "gpt-4o-mini",
                 "messages": [{"role": "user", "content": prompt}],
                 "temperature": 0.7
             }
