@@ -3,11 +3,5 @@
     "api/recommend.py": {
       "maxDuration": 30
     }
-  },
-  "builds": [
-    {
-      "src": "api/recommend.py",
-      "use": "@vercel/python"
-    }
-  ]
+  }
 }
