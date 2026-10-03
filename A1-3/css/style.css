@@ -166,11 +166,12 @@ button:active {
     margin-top: 0;
 }
 
-/* 7. FAQ 섹션 (가운데 정렬 및 카드 스타일 수정) */
+/* 7. FAQ 섹션 (상단 카드와 가로 폭 맞춤) */
 .faq-section {
-    max-width: 640px;
+    max-width: 640px;       /* 메인 카드(main)와 동일한 최대 너비 */
     margin: 40px auto 60px;
-    padding: 0 20px;
+    padding: 0;             /* 좌우 패딩을 0으로 설정하여 상단 박스와 가로 끝선을 완벽히 일치 */
+    width: 100%;            /* 반응형에서도 동일한 비율 유지 */
 }
 
 .faq-section h2 {
@@ -181,10 +182,11 @@ button:active {
 
 .faq-item {
     background: var(--white);
-    padding: 20px 24px;
-    border-radius: 12px;
+    padding: 24px;           /* 카드 내부 여백 정돈 */
+    border-radius: 16px;     /* 메인 카드와 동일한 곡률 적용 */
     margin-bottom: 16px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 
+                0 8px 10px -6px rgba(0, 0, 0, 0.05); /* 메인 카드와 동일한 그림자 효과 */
     border: 1px solid var(--border-color);
 }
 
@@ -198,13 +200,4 @@ button:active {
     margin: 0;
     font-size: 0.95rem;
     color: var(--text-muted);
-}
-
-/* 8. 푸터 */
-footer {
-    text-align: center;
-    padding: 40px 20px;
-    color: var(--text-muted);
-    font-size: 14px;
-    border-top: 1px solid var(--border-color);
 }
