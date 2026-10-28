@@ -1,7 +1,39 @@
-# 환경변수 파일
-.env
-
-# 파이썬 가상환경 폴더
-venv/
+# Python 관련 캐시 및 빌드 파일
 __pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# 가상환경 폴더
+venv/
+ENV/
+env/
+
+# 환경 변수 및 보안 키 파일 (GitHub 업로드 절대 금지)
+.env
+service_account.json
+
+# 운영체제 및 IDE 생성 파일
 .DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo

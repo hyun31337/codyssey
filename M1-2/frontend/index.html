@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 개인 PT 비서</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 사이드바 -->
+        <aside class="sidebar">
+            <h2>🏋️ AI PT 비서</h2>
+            <div class="summary-box">
+                <h3>운동 데이터 요약</h3>
+                <div id="summaryContent">로딩 중...</div>
+            </div>
+            <div class="conv-history-box">
+                <h3>대화 기록</h3>
+                <ul id="convList"></ul>
+            </div>
+        </aside>
+
+        <!-- 메인 콘텐츠 영역 -->
+        <main class="main-content">
+            <nav class="tabs">
+                <button class="tab-btn active" id="chatTabBtn">AI 챗봇</button>
+                <button class="tab-btn" id="dataTabBtn">운동 데이터 관리 (CRUD)</button>
+            </nav>
+
+            <!-- 1. 채팅 섹션 -->
+            <section id="chatSection" class="tab-section active">
+                <div id="chatBox" class="chat-box"></div>
+                <div class="chat-input-area">
+                    <input type="text" id="userInput" placeholder="운동 관련 질문을 입력하세요 (예: 이번 주 운동 어땠어?)" onkeypress="handleKeyPress(event)">
+                    <button onclick="sendMessage()">전송</button>
+                    <!-- 새 대화 버튼 추가 -->
+                    <button onclick="startNewConversation()" style="background: #e67e22; color: white; border: none; padding: 12px 18px; border-radius: 6px; cursor: pointer; font-weight: bold;">새 대화</button>
+                </div>
+            </section>
+
+            <!-- 2. 데이터 관리 섹션 -->
+            <section id="dataSection" class="tab-section">
+                <h3>운동 기록 추가</h3>
+                <form id="dataForm" onsubmit="addExerciseData(event)">
+                    <input type="date" id="inputDate" required>
+                    <input type="text" id="inputExercise" placeholder="운동 종류 (예: 스쿼트)" required>
+                    <input type="number" step="0.1" id="inputVal" placeholder="수치 (kg 또는 분)" required>
+                    <input type="text" id="inputMemo" placeholder="메모 (예: 5세트 완료)">
+                    <button type="submit">기록 추가</button>
+                    <button type="button" onclick="generateDummyData()" style="background: #f39c12; color: white; border: none; padding: 12px 20px; border-radius: 6px; cursor: pointer; font-weight: bold;">🎲 더미 기록 (+10개)</button>
+                </form>
+
+                <h3>운동 기록 목록</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>날짜</th>
+                            <th>운동 종류</th>
+                            <th>기록(값)</th>
+                            <th>메모</th>
+                            <th>관리</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dataTableBody"></tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
