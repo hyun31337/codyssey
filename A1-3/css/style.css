@@ -1,0 +1,279 @@
+/* 1. 기본 스타일 및 변수 설정 */
+:root {
+    --primary-color: #4f46e5;       /* 메인 브랜드 컬러 (인디고) */
+    --primary-hover: #4338ca;
+    --bg-color: #f8fafc;            /* 아주 연한 회색 배경 */
+    --text-main: #1e293b;           /* 진한 텍스트 */
+    --text-muted: #64748b;         /* 흐린 텍스트 */
+    --border-color: #e2e8f0;        /* 경계선 색상 */
+    --white: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden; /* 모바일 가로 스크롤 방지 */
+}
+
+/* 2. 헤더: 반응형 고정 헤더 */
+header {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.25rem;
+    white-space: nowrap;
+}
+
+header nav {
+    display: flex;
+    gap: 16px;
+}
+
+header nav a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+    white-space: nowrap;
+}
+
+header nav a:hover {
+    color: var(--primary-color);
+}
+
+/* 3. 메인 컨텐츠 영역 */
+main {
+    width: calc(100% - 32px); /* 모바일 좌우 여백 확보 */
+    max-width: 640px;
+    margin: 24px auto;
+    padding: 24px 20px;
+    background: var(--white);
+    border-radius: 16px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 
+                0 8px 10px -6px rgba(0, 0, 0, 0.05);
+}
+
+/* 소개 글 영역 */
+.intro {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.intro h2 {
+    margin-top: 0;
+    font-size: 1.35rem;
+    word-break: keep-all; /* 한글 단어 단위 줄바꿈 */
+}
+
+.intro p {
+    color: var(--text-muted);
+    margin-bottom: 0;
+    font-size: 0.95rem;
+    word-break: keep-all;
+}
+
+/* 4. 입력 그룹 스타일링 */
+.form-section h2 {
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+}
+
+.form-section > p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 0;
+    margin-bottom: 20px;
+    word-break: keep-all;
+}
+
+.input-group {
+    margin-bottom: 18px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.input-group input, 
+.input-group select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.2s ease;
+    outline: none;
+    background-color: var(--white);
+}
+
+.input-group input:focus, 
+.input-group select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+}
+
+/* 5. 버튼 스타일링 */
+button {
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 14px 20px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(0px);
+}
+
+/* 6. 결과 섹션 */
+.result-section {
+    margin-top: 28px;
+    padding: 20px;
+    background: #f1f5f9;
+    border-radius: 12px;
+    border: 1px dashed var(--border-color);
+    white-space: pre-line;
+    font-size: 14.5px;
+    color: #334155;
+    word-break: break-word;
+}
+
+.result-section h2 {
+    font-size: 1.1rem;
+    margin-top: 0;
+}
+
+/* 7. FAQ 섹션 */
+.faq-section {
+    width: calc(100% - 32px);
+    max-width: 640px;
+    margin: 32px auto 48px;
+    padding: 0;
+}
+
+.faq-section h2 {
+    text-align: center;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+}
+
+.faq-item {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 
+                0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+}
+
+.faq-item h3 {
+    margin: 0 0 8px 0;
+    font-size: 0.98rem;
+    color: var(--primary-color);
+    word-break: keep-all;
+}
+
+.faq-item p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    word-break: keep-all;
+}
+
+/* 8. 푸터 영역 */
+footer {
+    text-align: center;
+    padding: 24px 1rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--white);
+}
+
+footer p {
+    margin: 0;
+}
+
+/* 9. 반응형 미디어 쿼리 (태블릿 / 데스크톱 이상) */
+@media (min-width: 640px) {
+    header {
+        padding: 1.25rem 3rem;
+    }
+
+    header h1 {
+        font-size: 1.4rem;
+    }
+
+    header nav {
+        gap: 24px;
+    }
+
+    header nav a {
+        font-size: 1rem;
+    }
+
+    main {
+        margin: 40px auto;
+        padding: 40px;
+    }
+
+    .intro h2 {
+        font-size: 1.5rem;
+    }
+
+    .intro p {
+        font-size: 1rem;
+    }
+
+    .faq-section {
+        margin: 40px auto 60px;
+    }
+
+    .faq-item {
+        padding: 24px;
+    }
+
+    .faq-item h3 {
+        font-size: 1rem;
+    }
+
+    .faq-item p {
+        font-size: 0.95rem;
+    }
+}

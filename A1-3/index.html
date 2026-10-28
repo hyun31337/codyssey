@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FestaPick - 축제 추천 서비스</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>🎉 FestaPick</h1>
+        <nav>
+            <a href="#hero">홈</a>
+            <a href="#recommend">축제 추천</a>
+            <a href="#faq">FAQ</a>
+        </nav>
+    </header>
+
+    <main id="hero">
+        <section class="intro">
+            <h2>이번 주말, 어디로 떠나볼까요?</h2>
+            <p>날짜만 선택하면 AI가 전국의 알짜배기 지역 축제를 쏙쏙 골라드립니다.</p>
+        </section>
+
+        <section id="recommend" class="form-section">
+            <h2>✨ AI 맞춤 축제 추천</h2>
+            <p>여행 가고 싶은 날짜와 관심사를 입력해 보세요.</p>
+            
+            <div class="input-group">
+                <label for="travel-date">여행 날짜</label>
+                <input type="date" id="travel-date">
+            </div>
+            
+            <div class="input-group">
+                <label for="travel-location">선호 지역</label>
+                <select id="travel-location">
+                    <option value="전국">전국</option>
+                    <option value="수도권">수도권 (서울/경기/인천)</option>
+                    <option value="강원권">강원권</option>
+                    <option value="충청권">충청권</option>
+                    <option value="전라권">전라권</option>
+                    <option value="경상권">경상권</option>
+                    <option value="제주">제주</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="travel-interest">관심사 / 테마</label>
+                <input type="text" id="travel-interest" placeholder="예: 불꽃놀이, 전통 먹거리, 음악">
+            </div>
+
+            <button id="submit-btn">AI 추천 받기</button>
+        </section>
+
+        <section class="result-section">
+            <h2>🤖 AI 추천 결과</h2>
+            <div id="result-area">버튼을 누르면 이곳에 추천 결과가 표시됩니다.</div>
+        </section>
+    </main>
+
+    <section id="faq" class="faq-section">
+        <h2>자주 묻는 질문 (FAQ)</h2>
+        <div class="faq-item">
+            <h3>Q. 추천되는 축제 정보는 실제 정보인가요?</h3>
+            <p>A. AI가 날짜와 지역 기반으로 가장 어울리는 축제 정보를 분석하여 실시간으로 안내해 드립니다.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Q. 이용 요금이 발생하나요?</h3>
+            <p>A. 누구나 무료로 이용할 수 있는 AI 여행 큐레이션 서비스입니다.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 FestaPick. All rights reserved.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
