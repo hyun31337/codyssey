@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:8000";
+const API_BASE_URL = "https://codyssey-q520.onrender.com";
 let currentMessages = [];
 let currentConversationId = null; // 현재 선택되거나 진행 중인 대화 ID 관리
 
